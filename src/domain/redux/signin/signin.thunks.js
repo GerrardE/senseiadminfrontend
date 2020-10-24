@@ -26,26 +26,31 @@ const signin = (data, history) => async (dispatch) => {
 };
 
 const firebaseSignin = (data, history) => async (dispatch) => {
-  try {
-    dispatch(signinActions.signinLoading(true));
-    firebase.auth().signInWithEmailAndPassword(data.email, data.password);
-    const user = firebase.auth().currentUser;
+  dispatch(signinActions.signinLoading(true));
+  firebase
+    .auth()
+    .signInWithEmailAndPassword(data.email, data.password)
+    .catch(function (error) {
+      toast.error(error.message);
+      dispatch(signinActions.signinFail(error.message));
+      dispatch(signinActions.signinLoading(false));
+    });
+
+  firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
       const authenticatedUser = {
         email: user.email,
         displayName: user.displayName,
       };
-
       dispatch(signinActions.signinSuccess(authenticatedUser));
       toast.success("Signin success");
       history.push("/dashboard");
-      dispatch(signinActions.signinLoading(false));
-    } else {dispatch(signinActions.signinLoading(false));}
-  } catch (error) {
-    toast.error("Signin failed");
-    dispatch(signinActions.signinFail(error.message));
-    dispatch(signinActions.signinLoading(false));
-  }
+    } else {
+      // User is signed out.
+      // ...
+    }
+  });
+  dispatch(signinActions.signinLoading(false));
 };
 
 export { signin, firebaseSignin };

@@ -55,7 +55,7 @@ const Signin = ({ history }) => {
         </div>
         {loading ? (
           <center>
-            <AppLoader />
+            <AppLoader loaderWidth="80" />
           </center>
         ) : (
           <div className="form-group">
