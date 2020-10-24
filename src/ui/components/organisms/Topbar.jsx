@@ -2,14 +2,17 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import PropTypes from "prop-types";
-import signout from "@domain/redux/signout/signout.thunks";
+import classnames from "classnames";
+import { firebaseSignout } from "@domain/redux/signout/signout.thunks";
 
 const Topbar = ({ toggleCollapse, history }) => {
+  const [show, setShow] = React.useState(false);
+  const toggleShow = () => setShow((prevState) => !prevState);
   const user = useSelector((state) => state.signin.user);
   const dispatch = useDispatch();
-  
-  const handleSignout = () => dispatch(signout(history));
-  
+
+  const handleSignout = () => dispatch(firebaseSignout(history));
+
   return (
     <React.Fragment>
       <div className="header navbar">
@@ -27,11 +30,12 @@ const Topbar = ({ toggleCollapse, history }) => {
             </li>
           </ul>
           <ul className="nav-right">
-            <li className="dropdown">
+            <li className={classnames("dropdown", { show: show })}>
               <Link
                 to="#"
                 className="dropdown-toggle no-after peers fxw-nw ai-c lh-1"
-                data-toggle="dropdown"
+                aria-expanded={show ? "true" : "false"}
+                onClick={toggleShow}
               >
                 <div className="peer mR-10">
                   <img
@@ -44,7 +48,9 @@ const Topbar = ({ toggleCollapse, history }) => {
                   <span className="fsz-sm c-grey-900">{user.email}</span>
                 </div>
               </Link>
-              <ul className="dropdown-menu fsz-sm">
+              <ul
+                className={classnames("dropdown-menu fsz-sm", { show: "show" })}
+              >
                 <li role="separator" className="divider" />
                 <li>
                   <Link

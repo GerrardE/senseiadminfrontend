@@ -11,10 +11,12 @@ const DashboardView = () => {
           <div className="row gap-20">
             <InfoCard
               title="Users"
+              value="202"
             />
-            <InfoCard title="Sessions" />
+            <InfoCard title="Sessions" value="202" />
             <InfoCard
               title="Blacklists"
+              value="202"
             />
           </div>
         </div>

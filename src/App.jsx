@@ -7,6 +7,7 @@ import { store, persistor } from "@application/config/store/store";
 import "@ui/assets/styles/index.scss";
 import "react-toastify/dist/ReactToastify.css";
 import "@ui/assets/styles/custom.css";
+import "@ui/assets/scripts/index";
 
 export default function App() {
   return (
