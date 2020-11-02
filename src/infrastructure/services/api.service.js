@@ -1,43 +1,42 @@
 import axios from "axios";
-import errorHandler from "./error.service";
 
-// axios.defaults.baseURL = "http://xxx";
+axios.defaults.baseURL = "https://us-central1-sensei-edfdf.cloudfunctions.net/app/api/v1/";
 axios.defaults.headers.post["Content-Type"] =
   "application/x-www-form-urlencoded";
 
-const getResource = (path) => {
+const getResource = async (path) => {
   try{
-    const response = axios.get(`${path}`);
-    return response.data.data;
+    const response = await axios.get(`${path}`);
+    return response.data.payload;
   } catch (error) {
-    errorHandler(error);
+    throw(error.response.data);
   }
 };
 
 const postResource = (path, body) => {
   try{
     const response = axios.post(`${path}`, body);
-    return response.data.data;
+    return response;
   } catch (error) {
-    errorHandler(error);
+    throw(error.response.data);
   }
 };
 
 const putResource = (path, body) => {
   try{
     const response = axios.put(`${path}`, body);
-    return response.data.data;
+    return response;
   } catch (error) {
-    errorHandler(error);
+    throw(error.response.data);
   }
 };
 
 const deleteResource = (path) => {
   try{
     const response = axios.delete(`${path}`);
-    return response.data.data;
+    return response;
   } catch (error) {
-    errorHandler(error);
+    throw(error.response.data);
   }
 };
 

@@ -3,14 +3,17 @@ import PropTypes from "prop-types";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import classnames from "classnames";
-import { updateSetting, getSetting } from "@domain/redux/settings/settings.thunks";
+import { getItem, updateItem } from "@domain/redux/_helpers/thunkService";
+import * as actions from "@domain/redux/settings/settings.actions";
 import { Label, Inputfield, Button, ErrorMessage } from "../../atoms";
 import {
   textFieldSchema,
 } from "../validations/schema";
 import { AppLoader } from "../../molecules";
+import constants from "./settings.constants";
 
 const SettingsUpdate = ({ id, ...rest }) => {
+  const { parameters, parameter } = constants;
   const { props } = rest;
   const { history } = props;
   const dispatch = useDispatch();
@@ -19,23 +22,24 @@ const SettingsUpdate = ({ id, ...rest }) => {
   const { metakey, metavalue, metatype } = errors;
 
   React.useEffect(()=>{
-    dispatch(getSetting(Number(id)));
+    dispatch(getItem(actions, `/settings/${id}`));
   }, [dispatch, id]);
 
   const { setting, loading } = useSelector((state) => state.settings);
+  const callBackUrl = `/dashboard/${parameters}`;
 
   const onSubmit = (data) => {
-    dispatch(updateSetting(data, history));
+    dispatch(updateItem(actions, `${parameters}/${id}`, data, callBackUrl, history));
   };
 
   return (
     <div className="container-fluid">
-      <h4 className="c-grey-900 mT-10 mB-30">Settings</h4>
+      <h4 className="c-grey-900 mT-10 mB-30">{parameters.toUpperCase()}</h4>
       <div className="row">
         <div className="col-md-2" />
         <div className="col-md-8">
           <div className="bgc-white bd bdrs-3 p-20 mB-20">
-            <h4 className="c-grey-900 mB-20">Edit Item</h4>
+            <h4 className="c-grey-900 mB-20">{`Edit ${parameter}`}</h4>
             <form
               onSubmit={handleSubmit(onSubmit)}
               className="needs-validation"
@@ -47,7 +51,7 @@ const SettingsUpdate = ({ id, ...rest }) => {
                   <Inputfield
                     inputType="text"
                     inputClassName="form-control"
-                    defaultValue={setting.id}
+                    defaultValue={id}
                     inputName="id"
                     inputRef={register}
                     readOnly
@@ -119,7 +123,7 @@ const SettingsUpdate = ({ id, ...rest }) => {
                       </Button>
                       <a
                         className="btn btn-outline-danger"
-                        href="/dashboard/settings"
+                        href={`/dashboard/${parameters}`}
                         role="button"
                       >
                         Cancel

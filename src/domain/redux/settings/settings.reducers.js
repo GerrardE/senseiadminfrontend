@@ -16,11 +16,6 @@ const settingsReducer = (state = initialState, action) => {
     };
 
   /* GET */
-  case settingsConstants.GET_SETTINGS:
-    return {
-      ...state,
-    };
-
   case settingsConstants.GET_SETTINGS_SUCCESS:
     return {
       ...state,
@@ -34,11 +29,6 @@ const settingsReducer = (state = initialState, action) => {
     };
 
   /* GET ONE */
-  case settingsConstants.GET_SETTING:
-    return {
-      ...state,
-    };
-
   case settingsConstants.GET_SETTING_SUCCESS:
     return {
       ...state,
@@ -52,11 +42,6 @@ const settingsReducer = (state = initialState, action) => {
     };
 
   /* ADD */
-  case settingsConstants.ADD_SETTING:
-    return {
-      ...state,
-    };
-
   case settingsConstants.ADD_SETTING_SUCCESS:
     return {
       ...state,
@@ -70,11 +55,6 @@ const settingsReducer = (state = initialState, action) => {
     };
 
   /* UPDATE */
-  case settingsConstants.UPDATE_SETTING:
-    return {
-      ...state,
-    };
-
   case settingsConstants.UPDATE_SETTING_SUCCESS:
     return {
       ...state,
@@ -88,11 +68,6 @@ const settingsReducer = (state = initialState, action) => {
     };
 
   /* DELETE */
-  case settingsConstants.DELETE_SETTING:
-    return {
-      ...state,
-    };
-
   case settingsConstants.DELETE_SETTING_SUCCESS:
     return {
       ...state,

@@ -2,20 +2,15 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
-import { deleteSetting } from "@domain/redux/settings/settings.thunks";
-import { deleteBlacklist } from "@domain/redux/blacklists/blacklists.thunks";
+import { deleteItem } from "@domain/redux/_helpers/thunkService";
+import constants from "./settings.constants";
 
-const AppModal = ({ config, show, toggle }) => {
+const TableModal = ({ config, show, toggle }) => {
   const dispatch = useDispatch();
-  const { type, body, delete: del } = config;
+  const { actions, path delete: del } = config;
   
-  const onDelete = async (type, body) => {
-    if(type == "settings") {
-      await dispatch(deleteSetting(body?.id));
-    }
-    if(type == "blacklists") {
-      await dispatch(deleteBlacklist(body?.id));
-    }
+  const onDelete = async (actions, path) => {
+    await dispatch(deleteItem(actions, path));
 
     window.location.reload();
   };
@@ -31,7 +26,7 @@ const AppModal = ({ config, show, toggle }) => {
           <Button
             color="primary"
             className="mr-2"
-            onClick={() => onDelete(type, body)}
+            onClick={() => onDelete(actions, path)}
           >
             {config.btnText}
           </Button>
@@ -44,10 +39,10 @@ const AppModal = ({ config, show, toggle }) => {
   );
 };
 
-AppModal.propTypes = {
+TableModal.propTypes = {
   config: PropTypes.oneOfType([PropTypes.object, PropTypes.array]).isRequired,
   toggle: PropTypes.func.isRequired,
   show: PropTypes.oneOfType([PropTypes.bool]).isRequired,
 };
 
-export default AppModal;
+export default TableModal;

@@ -3,33 +3,37 @@ import PropTypes from "prop-types";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import classnames from "classnames";
-import { addSetting } from "@domain/redux/settings/settings.thunks";
+import * as actions from "@domain/redux/settings/settings.actions";
+import { createItem } from "@domain/redux/_helpers/thunkService";
 import { Label, Inputfield, Button, ErrorMessage } from "../../atoms";
 import {
   textFieldSchema,
 } from "../validations/schema";
 import { AppLoader } from "../../molecules";
+import constants from "./settings.constants";
 
-const SettingsAdd = ({ ...rest }) => {
+const SettingsCreate = ({ ...rest }) => {
+  const { parameters, parameter } = constants;
   const { props } = rest;
   const { history } = props;
   const { register, handleSubmit, errors } = useForm();
   const { metakey, metavalue, metatype  } = errors;
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.settings.loading);
+  const callBackUrl = `/dashboard/${parameters}`;
 
   const onSubmit = (data) => {
-    dispatch(addSetting(data, history));
+    dispatch(createItem(actions, parameters, data, callBackUrl, history));
   };
 
   return (
     <div className="container-fluid">
-      <h4 className="c-grey-900 mT-10 mB-30">Settings</h4>
+      <h4 className="c-grey-900 mT-10 mB-30">{parameters.toUpperCase()}</h4>
       <div className="row">
         <div className="col-md-2" />
         <div className="col-md-8">
           <div className="bgc-white bd bdrs-3 p-20 mB-20">
-            <h4 className="c-grey-900 mB-20">Add Item</h4>
+            <h4 className="c-grey-900 mB-20">{`Create ${parameter}`}</h4>
             <form
               onSubmit={handleSubmit(onSubmit)}
               className="needs-validation"
@@ -116,14 +120,14 @@ const SettingsAdd = ({ ...rest }) => {
   );
 };
 
-SettingsAdd.propTypes = {
+SettingsCreate.propTypes = {
   history: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   props: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 };
 
-SettingsAdd.defaultProps = {
+SettingsCreate.defaultProps = {
   history: {},
   props: {},
 };
 
-export default SettingsAdd;
+export default SettingsCreate;

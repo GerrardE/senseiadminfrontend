@@ -9,7 +9,7 @@ import {
 } from "react-table";
 import { Link } from "react-router-dom";
 import GlobalFilter from "./GlobalFilter";
-import AppModal from "./AppModal";
+import AppModal from "./TableModal";
 
 const Table = ({ columns, data, actions, props, title }) => {
   const {
