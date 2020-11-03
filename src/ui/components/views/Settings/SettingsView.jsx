@@ -1,14 +1,17 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import PropTypes from "prop-types";
-import { getSettings } from "@domain/redux/settings/settings.thunks";
+import { getItems } from "@domain/redux/_helpers/thunkService";
+import * as actions from "@domain/redux/settings/settings.actions";
 import { AppTable } from "../../organisms";
 import { AppLoader } from "../../molecules";
 import SettingsUpdate from "./SettingsUpdate";
-import SettingAdd from "./SettingsAdd";
+import SettingCreate from "./SettingsCreate";
 import { isEmpty } from "../validations/schema";
+import constants from "./settings.constants";
 
 const SettingsView = ({ match, ...rest }) => {
+  const { parameter, parameters, tableData } = constants;
   const dispatch = useDispatch();
   const { settings: data, loading } = useSelector((state) => state.settings);
   const actionItems = {
@@ -18,32 +21,14 @@ const SettingsView = ({ match, ...rest }) => {
   };
 
   const columns = React.useMemo(
-    () => [
-      {
-        Header: "Id",
-        accessor: "id",
-      },
-      {
-        Header: "Meta type",
-        accessor: "metatype",
-      },
-      {
-        Header: "Meta Key",
-        accessor: "metakey",
-      },
-      {
-        Header: "Meta Value",
-        accessor: "metavalue",
-      },
-    ],
-    [],
+    () => tableData, [tableData],
   );
 
   React.useEffect(() => {
-    dispatch(getSettings());
-  }, [dispatch]);
+    dispatch(getItems(actions, parameters));
+  }, [dispatch, parameters]);
 
-  if (!isEmpty(match.params) && match.path === "/dashboard/settings/:id") {
+  if (!isEmpty(match.params) && match.path === `/dashboard/${parameters}/:id`) {
     const { params } = match;
     const { id } = params;
 
@@ -52,30 +37,30 @@ const SettingsView = ({ match, ...rest }) => {
 
   if (
     isEmpty(match.params) &&
-    match.path === "/dashboard/settings/add/setting"
+    match.path === `/dashboard/${parameters}/create/${parameter}`
   ) {
-    return <SettingAdd props={rest} />;
+    return <SettingCreate props={rest} />;
   }
 
   return (
     <React.Fragment>
       <a
-        href="/dashboard/settings/add/setting"
+        href={`/dashboard/${parameters}/create/${parameter}`}
         className="btn btn-outline-primary float-right"
         role="button"
         aria-pressed="true"
       >
-        Add Setting
+        {`CREATE ${parameters.toUpperCase()}`}
       </a>
       {loading ? (
         <AppLoader loaderWidth="15%" loaderClassName="app-loader" />
       ) : (
         <AppTable
-          title="Settings"
-          subtitle="List of all settings"
           data={data}
           columns={columns}
-          actions={actionItems}
+          actionItems={actionItems}
+          actions={actions}
+          constants={constants}
         />
       )}
     </React.Fragment>

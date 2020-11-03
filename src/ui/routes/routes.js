@@ -30,7 +30,7 @@ const routes = [
     protected: true,
   },
   {
-    path: "/dashboard/blacklists/add/blacklist",
+    path: "/dashboard/blacklists/create/blacklist",
     component: Blacklists,
     protected: true,
   },
@@ -47,7 +47,7 @@ const routes = [
     protected: true,
   },
   {
-    path: "/dashboard/settings/add/setting",
+    path: "/dashboard/settings/create/setting",
     component: Settings,
     protected: true,
   },
