@@ -56,11 +56,11 @@ const SettingsView = ({ match, ...rest }) => {
         <AppLoader loaderWidth="15%" loaderClassName="app-loader" />
       ) : (
         <AppTable
-          title={parameters.toUpperCase()}
-          subtitle={`List of all ${parameters}`}
           data={data}
           columns={columns}
-          actions={actionItems}
+          actionItems={actionItems}
+          actions={actions}
+          constants={constants}
         />
       )}
     </React.Fragment>

@@ -6,7 +6,7 @@ axios.defaults.headers.post["Content-Type"] =
 
 const getResource = async (path) => {
   try{
-    const response = await axios.get(`${path}`);
+    const response = await axios.get(path);
     return response.data.payload;
   } catch (error) {
     throw(error.response.data);
@@ -15,7 +15,7 @@ const getResource = async (path) => {
 
 const postResource = (path, body) => {
   try{
-    const response = axios.post(`${path}`, body);
+    const response = axios.post(path, body);
     return response;
   } catch (error) {
     throw(error.response.data);
@@ -24,7 +24,7 @@ const postResource = (path, body) => {
 
 const putResource = (path, body) => {
   try{
-    const response = axios.put(`${path}`, body);
+    const response = axios.put(path, body);
     return response;
   } catch (error) {
     throw(error.response.data);
@@ -33,7 +33,7 @@ const putResource = (path, body) => {
 
 const deleteResource = (path) => {
   try{
-    const response = axios.delete(`${path}`);
+    const response = axios.delete(path);
     return response;
   } catch (error) {
     throw(error.response.data);

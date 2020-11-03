@@ -11,7 +11,8 @@ import { Link } from "react-router-dom";
 import GlobalFilter from "./GlobalFilter";
 import AppModal from "./TableModal";
 
-const Table = ({ columns, data, actions, props, title }) => {
+const Table = ({ columns, data, actions, actionItems, props, constants }) => {
+  const { parameters } = constants;
   const {
     getTableProps,
     getTableBodyProps,
@@ -43,22 +44,21 @@ const Table = ({ columns, data, actions, props, title }) => {
   const [show, setShow] = React.useState(false);
   const [config, setConfig] = React.useState({
     title: "Confirm Action",
-    body: {},
-    delete: false,
     edit: false,
+    actions,
+    path: "",
     btnText: "",
-    props: {},
+    props,
   });
   const toggle = () => setShow((show) => !show);
   const storeConfig = (input) => setConfig(input);
 
-  const handleDelete = (input) => {
+  const handleDelete = (id) => {
     const modalConfig = {
       title: "Confirm Action",
-      type: title.toLowerCase(),
-      body: input,
-      delete: !config.delete,
       btnText: "Delete",
+      actions,
+      path: `${parameters}/${id}`,
       props: props,
     };
     storeConfig(modalConfig);
@@ -133,21 +133,21 @@ const Table = ({ columns, data, actions, props, title }) => {
                     <td>
                       <div className="peers mR-15">
                         {
-                          actions.canedit && (
+                          actionItems.canedit && (
                             <div className="peer">
-                              <Link className="td-n c-deep-purple-500 cH-blue-500 fsz-md p-5" to={`/dashboard/${title.toLowerCase()}/${row.original.id}`}>
+                              <Link className="td-n c-deep-purple-500 cH-blue-500 fsz-md p-5" to={`/dashboard/${parameters}/${row.original.id}`}>
                                 <i className="ti-pencil" />
                               </Link>
                             </div>
                           )}
                         <div className="peer">
                           {
-                            actions.candelete && (
+                            actionItems.candelete && (
                               <a className="td-n c-red-500 cH-blue-500 fsz-md p-5">
                                 <i
                                   className="ti-trash"
                                   onClick={() => {
-                                    handleDelete(row.original);
+                                    handleDelete(row.original.id);
                                     toggle();
                                   }}
                                 />
@@ -156,8 +156,8 @@ const Table = ({ columns, data, actions, props, title }) => {
                         </div>
                         <div className="peer">
                           {
-                            actions.canview && (
-                              <Link className="td-n c-green-500 cH-green-500 fsz-md p-5" to={`/dashboard/${title.toLowerCase()}/${row.original.id}/get`}>
+                            actionItems.canview && (
+                              <Link className="td-n c-green-500 cH-green-500 fsz-md p-5" to={`/dashboard/${parameters}/${row.original.id}/get`}>
                                 <i className="ti-eye" />
                               </Link>
                             )
@@ -217,16 +217,14 @@ const Table = ({ columns, data, actions, props, title }) => {
 
 Table.propTypes = {
   columns: PropTypes.oneOfType([PropTypes.object, PropTypes.array]).isRequired,
-  row: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   data: PropTypes.oneOfType([PropTypes.object, PropTypes.array]).isRequired,
-  actions: PropTypes.oneOfType([PropTypes.object]),
+  actionItems: PropTypes.oneOfType([PropTypes.object]).isRequired,
+  constants: PropTypes.oneOfType([PropTypes.object]).isRequired,
+  actions: PropTypes.oneOfType([PropTypes.object]).isRequired,
   props: PropTypes.oneOfType([PropTypes.object]),
-  title: PropTypes.string.isRequired,
 };
 
 Table.defaultProps = {
-  row: {},
-  actions: {},
   props: {},
 };
 

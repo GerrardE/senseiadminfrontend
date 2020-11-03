@@ -3,13 +3,12 @@ import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import { deleteItem } from "@domain/redux/_helpers/thunkService";
-import constants from "./settings.constants";
 
 const TableModal = ({ config, show, toggle }) => {
   const dispatch = useDispatch();
-  const { actions, path delete: del } = config;
+  const { actions, path } = config;
   
-  const onDelete = async (actions, path) => {
+  const handleDelete = async (actions, path) => {
     await dispatch(deleteItem(actions, path));
 
     window.location.reload();
@@ -19,14 +18,12 @@ const TableModal = ({ config, show, toggle }) => {
     <div>
       <Modal isOpen={show} toggle={toggle} className="modal-dialog-centered">
         <ModalHeader toggle={toggle}>{config.title}</ModalHeader>
-        {del && (
-          <ModalBody>Are you sure you want to delete this item?</ModalBody>
-        )}
+        <ModalBody>Are you sure you want to delete this item?</ModalBody>
         <ModalFooter>
           <Button
             color="primary"
             className="mr-2"
-            onClick={() => onDelete(actions, path)}
+            onClick={() => handleDelete(actions, path)}
           >
             {config.btnText}
           </Button>
