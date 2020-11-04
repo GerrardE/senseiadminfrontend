@@ -14,13 +14,14 @@ import constants from "./settings.constants";
 
 const SettingsCreate = ({ ...rest }) => {
   const { parameters, parameter } = constants;
+  const callBackUrl = `/dashboard/${parameters}`;
+  
   const { props } = rest;
   const { history } = props;
   const { register, handleSubmit, errors } = useForm();
   const { metakey, metavalue, metatype  } = errors;
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.settings.loading);
-  const callBackUrl = `/dashboard/${parameters}`;
 
   const onSubmit = (data) => {
     dispatch(createItem(actions, parameters, data, callBackUrl, history));
@@ -102,7 +103,7 @@ const SettingsCreate = ({ ...rest }) => {
                       </Button>
                       <a
                         className="btn btn-outline-danger"
-                        href="/dashboard/settings"
+                        href={`/dashboard/${parameters}`}
                         role="button"
                       >
                         Cancel

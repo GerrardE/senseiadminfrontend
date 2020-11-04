@@ -14,6 +14,8 @@ import constants from "./settings.constants";
 
 const SettingsUpdate = ({ id, ...rest }) => {
   const { parameters, parameter } = constants;
+  const callBackUrl = `/dashboard/${parameters}`;
+  
   const { props } = rest;
   const { history } = props;
   const dispatch = useDispatch();
@@ -22,11 +24,10 @@ const SettingsUpdate = ({ id, ...rest }) => {
   const { metakey, metavalue, metatype } = errors;
 
   React.useEffect(()=>{
-    dispatch(getItem(actions, `/settings/${id}`));
-  }, [dispatch, id]);
+    dispatch(getItem(actions, `/${parameters}/${id}`));
+  }, [dispatch, id, parameters]);
 
   const { setting, loading } = useSelector((state) => state.settings);
-  const callBackUrl = `/dashboard/${parameters}`;
 
   const onSubmit = (data) => {
     dispatch(updateItem(actions, `${parameters}/${id}`, data, callBackUrl, history));
