@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import classnames from "classnames";
 import { createItem } from "@domain/redux/_helpers/thunkService";
-import * as actions from "@domain/redux/_helpers/thunkService";
+import * as actions from "@domain/redux/blacklists/blacklists.actions";
 import { Label, Inputfield, Button, ErrorMessage } from "../../atoms";
 import {
   textFieldSchema,

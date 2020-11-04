@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import classnames from "classnames";
-import * as actions from "@domain/redux/_helpers/thunkService";
+import * as actions from "@domain/redux/blacklists/blacklists.actions";
 import { getItem, updateItem } from "@domain/redux/_helpers/thunkService";
 import { Label, Inputfield, Button, ErrorMessage } from "../../atoms";
 import {
@@ -52,7 +52,7 @@ const BlacklistsUpdate = ({ id, ...rest }) => {
                   <Inputfield
                     inputType="text"
                     inputClassName="form-control"
-                    defaultValue={blacklist.id}
+                    defaultValue={id}
                     inputName="id"
                     inputRef={register}
                     readOnly

@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import PropTypes from "prop-types";
-import * as actions from "@domain/redux/settings/settings.actions";
+import * as actions from "@domain/redux/blacklists/blacklists.actions";
 import { getItems } from "@domain/redux/_helpers/thunkService";
 import { AppTable } from "../../organisms";
 import { AppLoader } from "../../molecules";
