@@ -5,99 +5,71 @@ const loading = (data) => ({
   payload: data,
 });
 
-const getBlacklists = (data) => ({
-  type: blacklistsConstants.GET_BLACKLISTS,
-  payload: data,
-});
-
-const getBlacklistsSuccess = (data) => ({
+/* GET */
+const getItemsSuccess = (data) => ({
   type: blacklistsConstants.GET_BLACKLISTS_SUCCESS,
   payload: data,
 });
 
-const getBlacklistsFail = (data) => ({
+const getItemsFail = (data) => ({
   type: blacklistsConstants.GET_BLACKLISTS_FAIL,
   payload: data,
 });
 
-const getBlacklist = (data) => ({
-  type: blacklistsConstants.GET_BLACKLIST,
-  payload: data,
-});
-
-const getBlacklistSuccess = (data) => ({
+/* GET ONE */
+const getItemSuccess = (data) => ({
   type: blacklistsConstants.GET_BLACKLIST_SUCCESS,
   payload: data,
 });
 
-const getBlacklistFail = (data) => ({
+const getItemFail = (data) => ({
   type: blacklistsConstants.GET_BLACKLIST_FAIL,
   payload: data,
 });
 
 /* ADD */
-const addBlacklist = (data) => ({
-  type: blacklistsConstants.ADD_BLACKLIST,
-  payload: data,
-});
-
-const addBlacklistSuccess = (data) => ({
+const createItemSuccess = (data) => ({
   type: blacklistsConstants.ADD_BLACKLIST_SUCCESS,
   payload: data,
 });
 
-const addBlacklistFail = (data) => ({
+const createItemFail = (data) => ({
   type: blacklistsConstants.ADD_BLACKLIST_FAIL,
   payload: data,
 });
 
 /* UPDATE */
-const updateBlacklist = (data) => ({
-  type: blacklistsConstants.UPDATE_BLACKLIST,
-  payload: data,
-});
-
-const updateBlacklistSuccess = (data) => ({
+const updateItemSuccess = (data) => ({
   type: blacklistsConstants.UPDATE_BLACKLIST_SUCCESS,
   payload: data,
 });
 
-const updateBlacklistFail = (data) => ({
+const updateItemFail = (data) => ({
   type: blacklistsConstants.UPDATE_BLACKLIST_FAIL,
   payload: data,
 });
 
 /* DELETE */
-const deleteBlacklist = (data) => ({
-  type: blacklistsConstants.DELETE_BLACKLIST,
-  payload: data,
-});
-
-const deleteBlacklistSuccess = (data) => ({
+const deleteItemSuccess = (data) => ({
   type: blacklistsConstants.DELETE_BLACKLIST_SUCCESS,
   payload: data,
 });
 
-const deleteBlacklistFail = (data) => ({
+const deleteItemFail = (data) => ({
   type: blacklistsConstants.DELETE_BLACKLIST_FAIL,
   payload: data,
 });
 
 export {
   loading,
-  getBlacklists,
-  getBlacklistsSuccess,
-  getBlacklistsFail,
-  getBlacklist,
-  getBlacklistSuccess,
-  getBlacklistFail,
-  addBlacklist,
-  addBlacklistSuccess,
-  addBlacklistFail,
-  updateBlacklist,
-  updateBlacklistSuccess,
-  updateBlacklistFail,
-  deleteBlacklist,
-  deleteBlacklistSuccess,
-  deleteBlacklistFail,
+  getItemsSuccess,
+  getItemsFail,
+  getItemSuccess,
+  getItemFail,
+  createItemSuccess,
+  createItemFail,
+  updateItemSuccess,
+  updateItemFail,
+  deleteItemSuccess,
+  deleteItemFail,
 };

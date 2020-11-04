@@ -3,14 +3,19 @@ import PropTypes from "prop-types";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import classnames from "classnames";
-import { addBlacklist } from "@domain/redux/blacklists/blacklists.thunks";
+import { createItem } from "@domain/redux/_helpers/thunkService";
+import * as actions from "@domain/redux/_helpers/thunkService";
 import { Label, Inputfield, Button, ErrorMessage } from "../../atoms";
 import {
   textFieldSchema,
 } from "../validations/schema";
 import { AppLoader } from "../../molecules";
+import constants from "./blacklists.constants";
 
-const BlacklistsAdd = ({ ...rest }) => {
+const BlacklistsCreate = ({ ...rest }) => {
+  const { parameters, parameter } = constants;
+  const callBackUrl = `/dashboard/${parameters}`;
+
   const { props } = rest;
   const { history } = props;
   const { register, handleSubmit, errors } = useForm();
@@ -19,17 +24,17 @@ const BlacklistsAdd = ({ ...rest }) => {
   const loading = useSelector((state) => state.blacklists.loading);
 
   const onSubmit = (data) => {
-    dispatch(addBlacklist(data, history));
+    dispatch(createItem(actions, parameters, data, callBackUrl, history));
   };
 
   return (
     <div className="container-fluid">
-      <h4 className="c-grey-900 mT-10 mB-30">Blacklists</h4>
+      <h4 className="c-grey-900 mT-10 mB-30">{parameters.toUpperCase()}</h4>
       <div className="row">
         <div className="col-md-2" />
         <div className="col-md-8">
           <div className="bgc-white bd bdrs-3 p-20 mB-20">
-            <h4 className="c-grey-900 mB-20">Add Item</h4>
+            <h4 className="c-grey-900 mB-20">{`Create ${parameter}`}</h4>
             <form
               onSubmit={handleSubmit(onSubmit)}
               className="needs-validation"
@@ -82,7 +87,7 @@ const BlacklistsAdd = ({ ...rest }) => {
                       </Button>
                       <a
                         className="btn btn-outline-danger"
-                        href="/dashboard/blacklists"
+                        href={`/dashboard/${parameters}`}
                         role="button"
                       >
                         Cancel
@@ -100,14 +105,14 @@ const BlacklistsAdd = ({ ...rest }) => {
   );
 };
 
-BlacklistsAdd.propTypes = {
+BlacklistsCreate.propTypes = {
   history: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   props: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 };
 
-BlacklistsAdd.defaultProps = {
+BlacklistsCreate.defaultProps = {
   history: {},
   props: {},
 };
 
-export default BlacklistsAdd;
+export default BlacklistsCreate;
