@@ -27,14 +27,14 @@ const getItemFail = (data) => ({
   payload: data,
 });
 
-/* ADD */
+/* CREATE */
 const createItemSuccess = (data) => ({
-  type: blacklistsConstants.ADD_BLACKLIST_SUCCESS,
+  type: blacklistsConstants.CREATE_BLACKLIST_SUCCESS,
   payload: data,
 });
 
 const createItemFail = (data) => ({
-  type: blacklistsConstants.ADD_BLACKLIST_FAIL,
+  type: blacklistsConstants.CREATE_BLACKLIST_FAIL,
   payload: data,
 });
 

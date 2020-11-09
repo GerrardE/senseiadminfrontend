@@ -41,14 +41,14 @@ const settingsReducer = (state = initialState, action) => {
       errors: action.payload,
     };
 
-  /* ADD */
-  case settingsConstants.ADD_SETTING_SUCCESS:
+  /* CREATE */
+  case settingsConstants.CREATE_SETTING_SUCCESS:
     return {
       ...state,
       setiing: action.payload,
     };
 
-  case settingsConstants.ADD_SETTING_FAIL:
+  case settingsConstants.CREATE_SETTING_FAIL:
     return {
       ...state,
       errors: action.payload,

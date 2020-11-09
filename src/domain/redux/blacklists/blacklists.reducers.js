@@ -16,11 +16,6 @@ const blacklistsReducer = (state = initialState, action) => {
     };
 
   /* GET */
-  case blacklistsConstants.GET_BLACKLISTS:
-    return {
-      ...state,
-    };
-
   case blacklistsConstants.GET_BLACKLISTS_SUCCESS:
     return {
       ...state,
@@ -34,11 +29,6 @@ const blacklistsReducer = (state = initialState, action) => {
     };
 
   /* GET ONE*/
-  case blacklistsConstants.GET_BLACKLIST:
-    return {
-      ...state,
-    };
-
   case blacklistsConstants.GET_BLACKLIST_SUCCESS:
     return {
       ...state,
@@ -51,30 +41,20 @@ const blacklistsReducer = (state = initialState, action) => {
       errors: action.payload,
     };
 
-  /* ADD */
-  case blacklistsConstants.ADD_BLACKLIST:
-    return {
-      ...state,
-    };
-
-  case blacklistsConstants.ADD_BLACKLIST_SUCCESS:
+  /* CREATE */
+  case blacklistsConstants.CREATE_BLACKLIST_SUCCESS:
     return {
       ...state,
       blacklist: action.payload,
     };
 
-  case blacklistsConstants.ADD_BLACKLIST_FAIL:
+  case blacklistsConstants.CREATE_BLACKLIST_FAIL:
     return {
       ...state,
       errors: action.payload,
     };
 
   /* UPDATE */
-  case blacklistsConstants.UPDATE_BLACKLIST:
-    return {
-      ...state,
-    };
-
   case blacklistsConstants.UPDATE_BLACKLIST_SUCCESS:
     return {
       ...state,
@@ -88,11 +68,6 @@ const blacklistsReducer = (state = initialState, action) => {
     };
 
   /* DELETE */
-  case blacklistsConstants.DELETE_BLACKLIST:
-    return {
-      ...state,
-    };
-
   case blacklistsConstants.DELETE_BLACKLIST_SUCCESS:
     return {
       ...state,

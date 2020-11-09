@@ -27,14 +27,14 @@ const getItemFail = (data) => ({
   payload: data,
 });
 
-/* ADD */
+/* CREATE */
 const createItemSuccess = (data) => ({
-  type: settingsConstants.ADD_SETTING_SUCCESS,
+  type: settingsConstants.CREATE_SETTING_SUCCESS,
   payload: data,
 });
 
 const createItemFail = (data) => ({
-  type: settingsConstants.ADD_SETTING_FAIL,
+  type: settingsConstants.CREATE_SETTING_FAIL,
   payload: data,
 });
 
