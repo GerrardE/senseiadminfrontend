@@ -5,6 +5,7 @@ import {
   ServerError,
   Blacklists,
   Settings,
+  Users,
 } from "../pages";
 
 const routes = [
@@ -15,6 +16,28 @@ const routes = [
   {
     path: "/dashboard",
     component: Dashboard,
+    protected: true,
+  },
+
+  /* USERS */
+  {
+    path: "/dashboard/users",
+    component: Users,
+    protected: true,
+  },
+  {
+    path: "/dashboard/users/:id",
+    component: Users,
+    protected: true,
+  },
+  {
+    path: "/dashboard/users/:id/view",
+    component: Users,
+    protected: true,
+  },
+  {
+    path: "/dashboard/users/create/user",
+    component: Users,
     protected: true,
   },
   

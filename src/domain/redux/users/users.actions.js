@@ -1,62 +1,62 @@
-import settingsConstants from "./settings.constants";
+import usersConstants from "./users.constants";
 
 const loading = (data) => ({
-  type: settingsConstants.SETTINGS_LOADING,
+  type: usersConstants.USERS_LOADING,
   payload: data,
 });
 
 /* GET */
 const getItemsSuccess = (data) => ({
-  type: settingsConstants.GET_SETTINGS_SUCCESS,
+  type: usersConstants.GET_USERS_SUCCESS,
   payload: data,
 });
 
 const getItemsFail = (data) => ({
-  type: settingsConstants.GET_SETTINGS_FAIL,
+  type: usersConstants.GET_USERS_FAIL,
   payload: data,
 });
 
 /* GET ONE */
 const getItemSuccess = (data) => ({
-  type: settingsConstants.GET_SETTING_SUCCESS,
+  type: usersConstants.GET_USER_SUCCESS,
   payload: data,
 });
 
 const getItemFail = (data) => ({
-  type: settingsConstants.GET_SETTING_FAIL,
+  type: usersConstants.GET_USER_FAIL,
   payload: data,
 });
 
 /* CREATE */
 const createItemSuccess = (data) => ({
-  type: settingsConstants.CREATE_SETTING_SUCCESS,
+  type: usersConstants.CREATE_USER_SUCCESS,
   payload: data,
 });
 
 const createItemFail = (data) => ({
-  type: settingsConstants.CREATE_SETTING_FAIL,
+  type: usersConstants.CREATE_USER_FAIL,
   payload: data,
 });
 
 /* UPDATE */
 const updateItemSuccess = (data) => ({
-  type: settingsConstants.UPDATE_SETTING_SUCCESS,
+  type: usersConstants.UPDATE_USER_SUCCESS,
   payload: data,
 });
 
 const updateItemFail = (data) => ({
-  type: settingsConstants.UPDATE_SETTING_FAIL,
+  type: usersConstants.UPDATE_USER_FAIL,
   payload: data,
 });
 
 /* DELETE */
 const deleteItemSuccess = (data) => ({
-  type: settingsConstants.DELETE_SETTING_SUCCESS,
+  type: usersConstants.DELETE_USER_SUCCESS,
   payload: data,
 });
 
 const deleteItemFail = (data) => ({
-  type: settingsConstants.DELETE_SETTING_FAIL,
+  type: usersConstants.DELETE_USER_FAIL,
   payload: data,
 });
 

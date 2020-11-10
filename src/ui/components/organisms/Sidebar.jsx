@@ -49,9 +49,17 @@ const Sidebar = ({ toggleCollapse }) => {
               </a>
             </li>
             <li className="nav-item mT-30 actived">
+              <a className="sidebar-link" href="/dashboard/users">
+                <span className="icon-holder">
+                  <i className="c-green-500 ti-user" />
+                </span>
+                <span className="title">Users</span>
+              </a>
+            </li>
+            <li className="nav-item mT-30 actived">
               <a className="sidebar-link" href="/dashboard/blacklists">
                 <span className="icon-holder">
-                  <i className="c-blue-500 ti-close" />
+                  <i className="c-red-500 ti-close" />
                 </span>
                 <span className="title">Blacklists</span>
               </a>
@@ -59,7 +67,7 @@ const Sidebar = ({ toggleCollapse }) => {
             <li className="nav-item mT-30 actived">
               <a className="sidebar-link" href="/dashboard/settings">
                 <span className="icon-holder">
-                  <i className="c-blue-500 ti-settings" />
+                  <i className="c-yellow-500 ti-settings" />
                 </span>
                 <span className="title">Settings</span>
               </a>
