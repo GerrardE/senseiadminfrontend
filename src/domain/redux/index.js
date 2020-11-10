@@ -4,11 +4,13 @@ import signin from "./signin/signin.reducers";
 import blacklists from "./blacklists/blacklists.reducers";
 import settings from "./settings/settings.reducers";
 import users from "./users/users.reducers";
+import dashboard from "./dashboard/dashboard.reducers";
 import signoutConstants from "./signout/signout.constants";
 
 const appReducer = combineReducers({
   signin,
   users,
+  dashboard,
   blacklists,
   settings,
 });
