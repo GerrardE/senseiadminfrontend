@@ -54,21 +54,13 @@ const UserDetails = ({ id, ...rest }) => {
                               <div className="mb-4 ">
                                 <div className="text-sm-right float-right">
                                   <h4 className="invoice-color mb-2 mt-md-2">
-                                    {`User ${id}`}
+                                    {`${user.firstName} ${user.lastName}`}
                                   </h4>
                                   <ul className="list list-unstyled mb-0">
                                     <li>
-                                      Created:
+                                      Joined:
                                       <span className="font-weight-semibold">
                                         {moment(user.createdat).format(
-                                          "DD/MM/YYYY",
-                                        )}
-                                      </span>
-                                    </li>
-                                    <li>
-                                      Updated:
-                                      <span className="font-weight-semibold">
-                                        {moment(user.updatedat).format(
                                           "DD/MM/YYYY",
                                         )}
                                       </span>
@@ -90,7 +82,7 @@ const UserDetails = ({ id, ...rest }) => {
                           <table className="table table-bordered">
                             <thead>
                               <tr>
-                                <th>Item</th>
+                                <th>Key</th>
                                 <th>Description</th>
                               </tr>
                             </thead>
@@ -100,8 +92,8 @@ const UserDetails = ({ id, ...rest }) => {
                                   <td>
                                     <h6 className="mb-0">{key}</h6>
                                   </td>
-                                  {user[key] == "createdat" || user[key] == "updatedat" ? (
-                                    moment(user[key]).format("DD/MM/YYYY")
+                                  {(key == "createdat" || key == "updatedat") ? (
+                                    <td>{moment(user[key]).format("DD/MM/YYYY")}</td>
                                   ) : (
                                     <td>{user[key]}</td>
                                   )}
