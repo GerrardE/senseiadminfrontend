@@ -144,3 +144,7 @@ a {
   line-height: 1;
   padding: .62503rem
 }
+
+.size-30 {
+  font-size: 30px;
+}
